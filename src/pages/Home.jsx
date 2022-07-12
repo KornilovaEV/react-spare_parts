@@ -81,7 +81,7 @@ function Home() {
 
   <Toolbar sx={{ 'background-color':styles.yellow, '@media all': {minHeight: 500,} }}>
     <div>
-    <Typography    variant="h2" component="div" sx={{ flexGrow: 1 }}>
+    <Typography    variant="h2" component="div" sx={{ flexGrow: 1}}>
               Мы в маркетплейсах:
     </Typography> <br/>
     <Button sx={{fontSize: 35, 'border-radius': '15px', 'border-width': '5px'}} variant="outlined" href="/shop">
