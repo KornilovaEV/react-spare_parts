@@ -7,8 +7,9 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 //import {SwipeableTextMobileStepper} from '../components/stepped';
 
+
 function Home() {
-  let styles = {
+  const styles = {
     black : '#212121',
     white : '#fafafa',
     yellowLight : '#fffde7',
@@ -17,7 +18,7 @@ function Home() {
 
   return (
     <>
-    <Toolbar  sx={{'background-color':styles.black, '@media all': {minHeight: 700,} }}>
+    <Toolbar  sx={{backgroundColor:styles.black, '@media all': {minHeight: 700,} }}>
       <Box sx={{ width: '100%' }}>
       <Grid container>
         <Grid item xs={6}>
@@ -40,7 +41,7 @@ function Home() {
     </Box>
     </Toolbar>
 
-  <Toolbar sx={{ 'background-color':styles.yellowLight, '@media all': {minHeight: 400,} }}>
+  <Toolbar sx={{ backgroundColor:styles.yellowLight, '@media all': {minHeight: 400,} }}>
   <Box sx={{ width: '100%' }}>
   <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
     <Grid item xs={3}> <h2>Цены ниже рыночных</h2></Grid>
@@ -51,16 +52,16 @@ function Home() {
   </Box>
   </Toolbar>
     
-  <Toolbar sx={{ 'background-color':styles.yellow, '@media all': {minHeight: 300,} }}>
+  <Toolbar sx={{ backgroundColor:styles.yellow, '@media all': {minHeight: 300,} }}>
     <Typography    variant="h3" component="div" sx={{ flexGrow: 1 }}><b>
               Покупайте качественные запчасти<br/> прямо сейчас!</b>
     </Typography>
-    <Button sx={{'background-color':styles.black,  fontSize: 35, 'border-radius': '15px'}} variant="contained" href="/shop">
+    <Button sx={{backgroundColor:styles.black,  fontSize: 35, borderRadius: '15px'}} variant="contained" href="/shop">
   Перейти в магазин
 </Button>
   </Toolbar>
 
-  <Toolbar sx={{ 'background-color':styles.yellowLight, '@media all': {minHeight: 500}, 'justifyContent':"center"}}>
+  <Toolbar sx={{ backgroundColor:styles.yellowLight, '@media all': {minHeight: 500}, 'justifyContent':"center"}}>
   <div>
   <h1>Товар проверяется на:</h1>
   <h3>
@@ -74,107 +75,20 @@ function Home() {
 
   </Toolbar>
 
-  <Toolbar sx={{ 'background-color':styles.yellowLight, '@media all': {minHeight: 400} }}>
+  <Toolbar sx={{ backgroundColor:styles.yellowLight, '@media all': {minHeight: 400} }}>
   <h1>С нами просто и безопасно</h1>
   </Toolbar>
 
 
-  <Toolbar sx={{ 'background-color':styles.yellow, '@media all': {minHeight: 500,} }}>
+  <Toolbar sx={{ backgroundColor:styles.yellow, '@media all': {minHeight: 500,} }}>
     <div>
     <Typography    variant="h2" component="div" sx={{ flexGrow: 1}}>
               Мы в маркетплейсах:
     </Typography> <br/>
-    <Button sx={{fontSize: 35, 'border-radius': '15px', 'border-width': '5px'}} variant="outlined" href="/shop">
+    <Button sx={{fontSize: 35, borderRadius: '15px', borderWidth: '5px'}} variant="outlined" href="/shop">
   Ozon
 </Button></div>
   </Toolbar>
-
-  <Toolbar  sx={{'background-color':styles.black, '@media all': {minHeight: 700,} }}>
-      <Box sx={{ width: '100%' }}>
-      <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-        <Grid item xs={3}>
-          <font color={styles.yellowLight}>
-            <h1>
-              Контакты
-            </h1>
-            <h5> <a href="tel:+8(925)607-65-44" >
-            +8(925)607-65-44</a>
-            </h5>
-            <h5> <a href="xzxzxz" >
-            xz@xz</a>
-            </h5>
-            <h5>
-              График работы: ежедневно <br/> с 8 до 18
-            </h5> <br/>
-            <h1>
-            Способы оплаты
-            </h1>
-            <div>
-            <img src='../icon/mir.png' width="60" height="30" alt="mir"/>
-            <img src='../icon/visa.jpg' width="60" height="30" alt="visa"/>
-            <img src='../icon/mastercard.png' width=" " height="40" alt="mastercard"/>
-            </div>
-          </font>
-        </Grid>
-        <Grid item xs={3}>
-        <font color={styles.yellowLight}>
-            <h1>
-              Доставка
-            </h1>
-            <h5>
-            <b><i>Москва</i></b> (в пределах МКАД)- в течение рабочего дня
-            </h5>
-            <h5>
-            <b><i>Московская область</i></b> - 1-2 дня
-            </h5>
-            <h5>
-            <h5>
-            <b><i>Липецк</i></b> - 1-3 дня
-            </h5>
-            <h5>
-            <b><i>Липецкая область</i></b> - 1-4 дня
-            </h5>
-            <b><i>Все регионы России</i></b> -  «Почты России», крупнейших транспортных компаний, курьерскими службами DPD, СДЭК, пункты выдачи Pickpoint, Boxberry
-            </h5>
-          </font>
-        </Grid>
-
-        <Grid item xs={3}>
-        <font color={styles.yellowLight}>
-            <h1>
-              О компании
-            </h1>
-            <h5>
-              Партнерство:
-            </h5>
-            <h5>
-              <a href="https">
-              Мы на ozon</a>
-            </h5>
-            <h5>
-              <a href="https">
-              Мы на ozon</a>
-            </h5>
-
-          </font>
-        </Grid>
-
-        <Grid item xs={3}>
-        <font color={styles.yellowLight}>
-            <h1>
-              Гарантии
-            </h1>
-            <h5>
-              <a href="/">
-              Условия обмена и возврата <br/>вы можете прочитать здесь</a>
-            </h5>
-          </font>
-        </Grid>
-
-      </Grid>
-    </Box>
-    </Toolbar>
-
 
 </>
   );

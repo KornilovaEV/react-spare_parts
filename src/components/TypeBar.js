@@ -4,7 +4,8 @@ import {List,ListItem, ListItemText,ListItemButton, Box } from '@mui/material';
 export default function TypeBar() { //
     
     return (
-        <Box sx={{ 
+        <Box 
+        sx={{ 
             bgcolor: '#fffde9',
             position: 'relative',
             overflow: 'auto',
@@ -15,25 +16,25 @@ export default function TypeBar() { //
         }}
         >
     <List>
-            <ListItemButton disablePadding>
+            <ListItemButton>
             <ListItemText className='text-center'>первый</ListItemText>
             </ListItemButton>
             <ListItemButton>
             <ListItemText className='text-center'>второй</ListItemText>
             </ListItemButton>
-            <ListItemButton disablePadding>
+            <ListItemButton>
             <ListItemText className='text-center'>первый</ListItemText>
             </ListItemButton>
             <ListItemButton>
             <ListItemText className='text-center'>второй</ListItemText>
             </ListItemButton>
-            <ListItemButton disablePadding>
+            <ListItemButton>
             <ListItemText className='text-center'>первый</ListItemText>
             </ListItemButton>
             <ListItemButton>
             <ListItemText className='text-center'>второй</ListItemText>
             </ListItemButton>
-            <ListItemButton disablePadding>
+            <ListItemButton>
             <ListItemText className='text-center'>первый</ListItemText>
             </ListItemButton>
             <ListItemButton>
@@ -76,7 +77,7 @@ const TypeBar= observer(() => {//= () => { //
         </List>
 
         <List>
-            <ListItemButton disablePadding>
+            <ListItemButton >
             <ListItemText>первый</ListItemText>
             </ListItemButton>
             <ListItemButton>

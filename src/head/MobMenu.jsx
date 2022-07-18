@@ -5,7 +5,7 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
-import {Find} from './Find'
+import Find from './Find'
 import {styled, alpha } from '@mui/material/styles';
     
     export default function MobMenu() {

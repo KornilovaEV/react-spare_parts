@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
@@ -6,23 +6,30 @@ import Button from '@mui/material/Button';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import Tooltip from '@mui/material/Tooltip';
 import Box from '@mui/material/Box';
-import {TextField} from '@mui/material'
-import {Find} from './Find'
 
 function CompMenu(/*Auth */)  {
-    let icon;
+
+
+    let log;
     const Auth = false;
     Auth?(
-        icon = 'Выйти'
+        log={
+            icon: 'Выйти',
+            title: 'Выйти из аккаунта',
+            href:'/login'
+        }
     ):(
-        icon = 'Войти'
+        log={
+            icon: 'Войти',
+            title: 'Войти или зарегистрироваться',
+            href:'/login'
+        }
     )
 
     return (
-        <>
         <header>
         <AppBar position="static">
-            <Toolbar sx={{ 'background-color': '#ffc400', '@media all': {minHeight: 100,} }}>
+            <Toolbar sx={{ backgroundColor: '#ffc400', '@media all': {minHeight: 100,} }}>
             <div style={{ width: '100%' }}>
             <Box
             sx={{
@@ -39,10 +46,6 @@ function CompMenu(/*Auth */)  {
                 GlumStore 
                 </Typography>
             </Button>
-
-            <Find/>
-        
-            
             </Box>
 
             <Box
@@ -76,12 +79,13 @@ function CompMenu(/*Auth */)  {
             <Box sx={{ flexGrow: 1 }} >
                 <Tooltip  title="Корзина"><Button color="inherit" href='/basket'>
                     <ShoppingBasketIcon sx={{fontSize: 40}}/>
+                    <span>1205 руб.</span>
                 </Button></Tooltip>
             </Box>
             
             <Box sx={{ flexGrow: 1 }}>
-                <Tooltip  title="Войти или зарегистрироваться">
-                    <Button sx={{fontSize: 23}} href='/login' color="inherit">{icon}</Button>
+                <Tooltip  title={log.title}>
+                    <Button sx={{fontSize: 23}} href={log.href} color="inherit">{log.icon}</Button>
                 </Tooltip>
             </Box>
             </Box>
@@ -89,7 +93,6 @@ function CompMenu(/*Auth */)  {
         </Toolbar>
         </AppBar>
         </header>
-        </>
     );
 }
 
