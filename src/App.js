@@ -8,12 +8,17 @@ import Shop from './pages/Shop'
 import About from './pages/About'
 import Guarantee from './pages/Guarantee'
 import Basket from './pages/Basket'
+import {Adaptability} from './head';
+import Footer from './components/Footer';
 
 function App() {
   //const Menu = CompMenu;
 
   return (
+    <>
+    <Adaptability/>
     <Routes>
+    
       {//<Route path ="/" element={<CompMenu />} >
         }
       <Route index element={<Home />}/>
@@ -31,6 +36,9 @@ function App() {
       {//</Route>
       }
     </Routes>
+    
+    <Footer/>
+    </>
   );
 }
 

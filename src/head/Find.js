@@ -4,11 +4,6 @@ import styles from './Head.module.scss'
 
 
 const Find = ({onChangeSearchInput, searchValue = "", setSearchValue}) => {
-    //const [searchValue, setSearchValue] = useState('');
-
-    /*const onChangeSearchInput = (event) => {
-        setSearchValue(event.target.value);
-    }*/
     return (
         <div className={styles.divSearch}>
             <input 

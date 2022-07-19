@@ -2,16 +2,14 @@ import React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import Tooltip from '@mui/material/Tooltip';
-import Box from '@mui/material/Box';
+import {NavLink} from 'react-router-dom'
 
 function CompMenu(/*Auth */)  {
-
+    const Auth = false;
 
     let log;
-    const Auth = false;
     Auth?(
         log={
             icon: 'Выйти',
@@ -30,65 +28,48 @@ function CompMenu(/*Auth */)  {
         <header>
         <AppBar position="static">
             <Toolbar sx={{ backgroundColor: '#ffc400', '@media all': {minHeight: 100,} }}>
-            <div style={{ width: '100%' }}>
-            <Box
-            sx={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                p: 1,
-                m: 1,
-                borderRadius: 1,
-            }}
-            >
-            <Button href="/"  color="inherit">
+            <div className="justify-between d-flex w100p clear">
+            <NavLink to="/">
                 <Typography variant="h2"
                 sx={{ fontStyle: 'oblique',  fontWeight: 'medium', fontFamily: 'Monospace', }}>
-                GlumStore 
+                    GlumStore 
                 </Typography>
-            </Button>
-            </Box>
+                </NavLink>
 
-            <Box
-            sx={{
-                display: 'flex',
-                justifyContent: 'flex-end',
-                fontSize: 18,
-                p: 1,
-                m: 1,
-            }}
-            >
-            
-            <Box sx={{ flexGrow: 1}}>
-                <Tooltip  title="Магазин">
-                    <Button sx={{ flexGrow: 1, fontSize: 23}} href="/shop" color="inherit">Магазин</Button>
-                </Tooltip>
-            </Box>
+            <div className="justify-between d-flex ml-50 mr-5  pr-15">
+                <NavLink  to="/shop">
+                    <Tooltip  title="Магазин">
+                        <button className="headButton" >Магазин</button>
+                    </Tooltip>
+                </NavLink>
 
-            <Box sx={{ flexGrow: 1 }}>
-                <Tooltip  title="Как связаться">
-                    <Button sx={{fontSize: 23}} href="/about" color="inherit">Контакты</Button>
-                </Tooltip>
-            </Box>
+                <NavLink to="/about">
+                    <Tooltip  title="Как связаться">
+                        <button className="headButton">Контакты</button>
+                    </Tooltip>
+                </NavLink>
 
-            <Box sx={{ flexGrow: 1 }}>
-                <Tooltip  title="Условия">
-                    <Button  sx={{fontSize: 23}} href='/guarantee' color="inherit">Гарантия и возврат</Button>
-                </Tooltip>
-            </Box>
+                <NavLink to="/guarantee">
+                    <Tooltip  title="Условия">
+                        <button className="headButton">Гарантия<br/>и возврат</button>
+                    </Tooltip>
+                </NavLink>
 
-            <Box sx={{ flexGrow: 1 }} >
-                <Tooltip  title="Корзина"><Button color="inherit" href='/basket'>
-                    <ShoppingBasketIcon sx={{fontSize: 40}}/>
-                    <span>1205 руб.</span>
-                </Button></Tooltip>
-            </Box>
-            
-            <Box sx={{ flexGrow: 1 }}>
-                <Tooltip  title={log.title}>
-                    <Button sx={{fontSize: 23}} href={log.href} color="inherit">{log.icon}</Button>
-                </Tooltip>
-            </Box>
-            </Box>
+                <NavLink to="/basket">
+                    <Tooltip  title="Корзина">
+                        <div className="d-flex flex-column mt-25 headButton">
+                            <ShoppingBasketIcon sx={{fontSize: 40}}/>
+                            <span className="flex-row">1205 руб.</span>
+                        </div>
+                    </Tooltip>
+                </NavLink>
+
+                <NavLink to={log.href}>
+                    <Tooltip  title={log.title}>
+                        <button className="headButton">{log.icon}</button>
+                    </Tooltip>
+                </NavLink>
+            </div>
         </div>
         </Toolbar>
         </AppBar>
@@ -97,3 +78,4 @@ function CompMenu(/*Auth */)  {
 }
 
 export default CompMenu;
+

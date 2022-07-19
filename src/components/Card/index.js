@@ -3,11 +3,11 @@ import ContentLoader from 'react-content-loader';
 import AppContext from './context';
 import styles from './Card.module.scss';
 
-function Card({loading = false, title, image_url, price, articul, manufacturer, onPlus}) {
+function Card({id, loading = false, title, image, price, articul, manufacturer, onPlus,}) {
   let [plus, setPlus] = useState(false);
   const onClickPlus = () => {
     setPlus(!plus)
-    onPlus({title, image_url, price});
+    onPlus({id, title, image, price});
   };
   return (
     <div className={styles.card}>
@@ -22,7 +22,7 @@ function Card({loading = false, title, image_url, price, articul, manufacturer, 
         </ContentLoader>
       ) : (
         <>
-          <img width="100%" height={135} src={image_url ? image_url : '/img/no_icon.svg'} alt="Producrs" />
+          <img width="100%" height={135} src={image ? image : '/img/no_icon.svg'} alt="Producrs" />
           <h3>{title}</h3>
           <div className="d-flex justify-between align-center">
             <div className="d-flex flex-column">
@@ -40,7 +40,8 @@ function Card({loading = false, title, image_url, price, articul, manufacturer, 
                 onClick={onClickPlus}
                 src={plus ? '/img/btn-checked.svg' : '/img/btn-plus.svg'}
                 alt="Добавить"
-              /></div>
+              />
+              </div>
           </div>
         </>
       )}

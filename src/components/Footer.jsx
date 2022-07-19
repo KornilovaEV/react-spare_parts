@@ -2,7 +2,7 @@ import * as React from 'react';
 import Toolbar from '@mui/material/Toolbar';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-
+import {NavLink} from 'react-router-dom'
 
 const Footer = () => {
     const styles = {
@@ -75,12 +75,8 @@ const Footer = () => {
                     Партнерство:
                 </h5>
                 <h5>
-                    <a href="https">
-                    Мы на ozon</a>
-                </h5>
-                <h5>
-                    <a href="https">
-                    Мы на ozon</a>
+                    <NavLink to="https">
+                    Мы на ozon</NavLink>
                 </h5>
             </font>
             </Grid>
@@ -90,9 +86,11 @@ const Footer = () => {
                     Гарантии
                 </h1>
                 <h5>
-                    <a href="/">
-                    Условия обмена и возврата <br/>
-                    вы можете прочитать здесь</a>
+                
+                <NavLink to="/guarantee">
+                Условия обмена и возврата <br/>
+                    вы можете прочитать здесь
+                </NavLink>
                 </h5>
             </font>
             </Grid>
