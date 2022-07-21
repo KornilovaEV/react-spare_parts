@@ -5,7 +5,7 @@ import styles from './Head.module.scss'
 
 const Find = ({onChangeSearchInput, searchValue = "", setSearchValue}) => {
     return (
-        <div className={styles.divSearch}>
+        <>
             <input 
             className={styles.search} 
             onChange={onChangeSearchInput} 
@@ -18,7 +18,7 @@ const Find = ({onChangeSearchInput, searchValue = "", setSearchValue}) => {
                     src="/img/btn-remove.svg"
                     alt="Очистить"/>
                 }   
-        </div>
+        </>
     );
 };
 

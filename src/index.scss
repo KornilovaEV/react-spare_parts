@@ -210,8 +210,26 @@ input[type='submit']:active {
 
   &:hover {
     cursor:pointer;
-    opacity: 0.8;
+    opacity: 0.7;
     transition: opacity 0.15s ease-in-out;
     }
 
+}
+
+.ToShopBotton{
+  color:#fffde7;
+  background-color: #ffc400;
+  font-size: 25px;
+  height: 70px;
+  
+  
+  &:hover {
+    background-color: #c39c18;
+    cursor:pointer;
+    
+  }
+}
+
+.cartRend{
+  margin-top: 85px; 
 }

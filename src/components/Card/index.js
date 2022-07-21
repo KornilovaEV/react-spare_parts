@@ -1,24 +1,43 @@
 import React, {useState} from 'react';
 import ContentLoader from 'react-content-loader';
-import AppContext from './context';
+//import AppContext from './context';
 import styles from './Card.module.scss';
 
-function Card({id, loading = false, title, image, price, articul, manufacturer, onPlus,}) {
-  let [plus, setPlus] = useState(false);
+function Card({
+  id, 
+  title, 
+  image, 
+  price, 
+  articul, 
+  manufacturer, 
+  onPlus, 
+  added = false, 
+  loading = false, }) {
+
+  //const { isItemAdded } = React.useContext(AppContext);
+  const [plus, setPlus] = useState(added);
+
   const onClickPlus = () => {
-    setPlus(!plus)
-    onPlus({id, title, image, price});
+    onPlus({id, title, image, articul, price});
+    setPlus(!plus);
   };
+
   return (
     <div className={styles.card}>
       {loading ? (
-        <ContentLoader
+        <ContentLoader 
           speed={2}
-          width={155}
-          height={250}
-          viewBox="0 0 155 265"
+          width={190}
+          height={320}
+          viewBox="0 10 190 320"
           backgroundColor="#f3f3f3"
-          foregroundColor="#ecebeb">
+          foregroundColor="#ecebeb"
+        >
+          <rect x="0" y="155" rx="5" ry="5" width="190" height="25" /> 
+          <rect x="0" y="185" rx="5" ry="5" width="82" height="25" /> 
+          <rect x="0" y="220" rx="7" ry="7" width="110" height="100" /> 
+          <rect x="150" y="260" rx="15" ry="10" width="32" height="32" /> 
+          <rect x="0" y="0" rx="8" ry="8" width="190" height="135" />
         </ContentLoader>
       ) : (
         <>
@@ -32,16 +51,16 @@ function Card({id, loading = false, title, image, price, articul, manufacturer, 
               <b>{price} руб.</b>
               <span><i>Производитель:</i></span>
               <b>{manufacturer}</b>
-
             </div>
-            <div>
+
+            {onPlus && (
               <img
                 className={styles.plus}
                 onClick={onClickPlus}
                 src={plus ? '/img/btn-checked.svg' : '/img/btn-plus.svg'}
                 alt="Добавить"
               />
-              </div>
+              )}
           </div>
         </>
       )}
@@ -50,27 +69,3 @@ function Card({id, loading = false, title, image, price, articul, manufacturer, 
 }
 
 export default Card;
-
-
-/*
-
-function Card({ id, title, image_url, price, articul, onFavorite, onPlus, loading = false }) {
-  const { isItemAdded, isItemFavorited } = React.useContext(AppContext);
-
-  const onClickPlus = () => {
-    onPlus({ id, title, image_url, price, articul });
-  };
-
-  const onClickFavorite = () => {
-    onFavorite({ id, title, image_url, price, articul });
-  };
-
-  return (
-  {onPlus && (
-    <img
-      className={styles.plus}
-      onClick={onClickPlus}
-      src={isItemAdded(id) ? '/img/btn-checked.svg' : '/img/btn-plus.svg'}
-      alt="Plus"
-    />
-*/

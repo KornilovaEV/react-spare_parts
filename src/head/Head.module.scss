@@ -1,6 +1,6 @@
 .search{
     border-radius: 10px;
-    width: 25%;
+    width: 30%;
     height: 70px;
     opacity: 0.5;
     
@@ -12,16 +12,11 @@
     outline: none;
 
     &:focus{
-        width: 40%;
+        width: 50%;
         opacity: 1;
     }
 }
 
-.searchIcon{
-    position: absolute;
-    top: 40px;
-    right: 27%;
-}
 
 .clear {
     position: absolute;

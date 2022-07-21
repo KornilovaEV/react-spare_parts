@@ -36,10 +36,10 @@ function CompMenu(/*Auth */)  {
                 </Typography>
                 </NavLink>
 
-            <div className="justify-between d-flex ml-50 mr-5  pr-15">
+            <div className="justify-between d-flex ml-50 mr-5 pr-15">
                 <NavLink  to="/shop">
-                    <Tooltip  title="Магазин">
-                        <button className="headButton" >Магазин</button>
+                    <Tooltip  title="О нас">
+                        <button className="headButton" >Информация</button>
                     </Tooltip>
                 </NavLink>
 
@@ -70,7 +70,7 @@ function CompMenu(/*Auth */)  {
                     </Tooltip>
                 </NavLink>
             </div>
-        </div>
+            </div>
         </Toolbar>
         </AppBar>
         </header>

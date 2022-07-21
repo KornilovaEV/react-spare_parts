@@ -1,8 +1,7 @@
 import React from 'react';
-import CompMenu from './CompMenu';
-import MobMenu from './MobMenu';
+import CompMenu from './comp/CompMenu';
+import MobMenu from './mob/MobMenu';
 import {useMatchMedia} from '../hook/use-match-media';
-import Demo from './mbStyle.tsx';
 
 function Adaptability() {
     const {isDesktop} = useMatchMedia();

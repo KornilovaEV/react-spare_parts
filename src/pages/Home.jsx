@@ -1,97 +1,100 @@
-import * as React from 'react';
+import React, {useState, useEffect} from "react";
+import {Grid} from "@mui/material"
+import TypeBar from "../components/TypeBar";
+import Card from "../components/Card";
+import Find from '../head/Find'
+import axios from 'axios';
+import AppContext from '../context';
 
-import Typography from '@mui/material/Typography';
-import Toolbar from '@mui/material/Toolbar';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-//import {SwipeableTextMobileStepper} from '../components/stepped';
 
+const Home = () => {
+    const [items, setItems] = useState([]);
+    const [cartItems, setCartItems] = useState([]);  
+    const [searchValue, setSearchValue] = useState('');
+    const [isLoading, setIsLoading] = useState(true); 
 
-function Home() {
-  const styles = {
-    black : '#212121',
-    white : '#fafafa',
-    yellowLight : '#fffde7',
-    yellow : '#ffc400',
-  }
+    useEffect(() => {
+        async function fetchData() {
+            try {
+            const cartRespons = await axios.get('https://62cec64c486b6ce8264c6981.mockapi.io/cart');
+            const itemsRespons = await axios.get('https://62cec64c486b6ce8264c6981.mockapi.io/items');
 
-  return (
-    <>
-    <Toolbar  sx={{backgroundColor:styles.black, '@media all': {minHeight: 700,} }}>
-      <Box sx={{ width: '100%' }}>
-      <Grid container>
-        <Grid item xs={6}>
-          <font color={styles.yellowLight}>
-            <h1>
-              Есть вопросы по товару?
-            </h1>
-            <h4>
-            Мы поможем Вам подобрать товар или ответим на вопросы,<br/>
-            которые Вас интересуют!
-            </h4>
-          </font>
+            setIsLoading(false);
+            setCartItems(cartRespons.data);
+            setItems(itemsRespons.data);
+                
+            } catch (error) {
+                alert('Ошибка при запросе данных ;(');
+                console.error(error);
+            }
+        }
+        fetchData();
+    }, []);
+
+    const onChangeSearchInput = (event) => {
+        setSearchValue(event.target.value);
+    }
+
+    const renderItems = () => {
+        const filterItems = items.filter((item) => item.title.toLowerCase().includes(searchValue.toLowerCase()))
+        return (isLoading? 
+            [...Array(10)] :
+            filterItems)
+        .map((obj, index) => (
+            <Card 
+            key={index}
+            onPlus={(item) => onAddToCart(item)}
+            added={cartItems.some((item) =>
+                Number(item.id) === Number(obj.id) 
+                )}
+            loading={isLoading}
+            {...obj}
+            />                        
+        ))
+    }
+
+    const onAddToCart = async (obj) => {
+        try {
+            const findItem = cartItems.find((item) => Number(item.id) === Number(obj.id) /*|| item.articul === obj.articul*/)
+            if (findItem)
+            {
+                setCartItems((prev) => prev.filter((item) => Number(item.id) !== Number(obj.id) /*|| item.articul !== obj.articul*/));
+                await axios.delete(`https://62cec64c486b6ce8264c6981.mockapi.io/cart/${obj.id}`);
+                console.log("del")
+            }
+            else{
+                setCartItems((prev) => [...prev, obj]);
+                axios.post('https://62cec64c486b6ce8264c6981.mockapi.io/cart', obj);
+                console.log("+")
+            }
+        } catch (error) {
+                alert('Ошибка при добавлении в корзину');
+                console.error(error);
+            };
+    };
+
+    console.log("cartItems: ", cartItems)
+
+    return (
+        
+    <AppContext.Provider value={{items, cartItems,  }} >
+        <Grid container spacing={3}>
+            <Grid item xs={2}>
+            <TypeBar />
+            </Grid>
+            <Grid item xs={10} className="mt-25">
+                <Find
+                    onChangeSearchInput={onChangeSearchInput}
+                    searchValue={searchValue}
+                    setSearchValue={setSearchValue}
+                />
+                <div className="cartRend d-flex flex-wrap">
+                    {renderItems()} 
+                </div>
+            </Grid>
         </Grid>
-        <Grid item xs={6}>
-        <Typography    variant="h3" color={styles.yellowLight} component="div" sx={{ flexGrow: 1 }}>
-              Тут сделать форму для оставки номера!!!! (либо свои контакты)
-        </Typography>
-        </Grid>
-      </Grid>
-    </Box>
-    </Toolbar>
-
-  <Toolbar sx={{ backgroundColor:styles.yellowLight, '@media all': {minHeight: 400,} }}>
-  <Box sx={{ width: '100%' }}>
-  <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-    <Grid item xs={3}> <h2>Цены ниже рыночных</h2></Grid>
-    <Grid item xs={3}> <h2>Работаем в крупнейших<br/> маркетплейсах России</h2></Grid>
-    <Grid item xs={3}> <h2>Возврат товара,<br/>в случае дефектов</h2></Grid>
-    <Grid item xs={3}> <h2>Доставка по всей стране</h2></Grid>
-  </Grid>
-  </Box>
-  </Toolbar>
-    
-  <Toolbar sx={{ backgroundColor:styles.yellow, '@media all': {minHeight: 300,} }}>
-    <Typography    variant="h3" component="div" sx={{ flexGrow: 1 }}><b>
-              Покупайте качественные запчасти<br/> прямо сейчас!</b>
-    </Typography>
-    <Button sx={{backgroundColor:styles.black,  fontSize: 35, borderRadius: '15px'}} variant="contained" href="/shop">
-  Перейти в магазин
-</Button>
-  </Toolbar>
-
-  <Toolbar sx={{ backgroundColor:styles.yellowLight, '@media all': {minHeight: 500}, 'justifyContent':"center"}}>
-  <div>
-  <h1>Товар проверяется на:</h1>
-  <h3>
-    <ul>
-      <li>Оригинальность</li>
-      <li>Целостность товара и упаковки</li>
-      <li>хз</li>
-      <li>хз</li>
-    </ul></h3>
-  </div>
-
-  </Toolbar>
-
-  <Toolbar sx={{ backgroundColor:styles.yellowLight, '@media all': {minHeight: 400} }}>
-  <h1>С нами просто и безопасно</h1>
-  </Toolbar>
-
-
-  <Toolbar sx={{ backgroundColor:styles.yellow, '@media all': {minHeight: 500,} }}>
-    <div>
-    <Typography    variant="h2" component="div" sx={{ flexGrow: 1}}>
-              Мы в маркетплейсах:
-    </Typography> <br/>
-    <Button sx={{fontSize: 35, borderRadius: '15px', borderWidth: '5px'}} variant="outlined" href="/shop">
-  Ozon
-</Button></div>
-  </Toolbar>
-
-</>
-  );
-}
+        </AppContext.Provider>
+    );
+};
 
 export default Home;

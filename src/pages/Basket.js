@@ -18,8 +18,13 @@ function Basket(/*{cartItems = [], setCartItems}*/) {
     }, []);
 
     const onRemoveItem = (id) => {
+        try {
         axios.delete(`https://62cec64c486b6ce8264c6981.mockapi.io/cart/${id}`);
         setCartItems((prev) => prev.filter((item) => Number(item.id) !== Number(id)));
+        } catch (error) {
+            alert('Ошибка при удалении из корзины');
+            console.error(error);
+        }
     }
 
     const card = (
