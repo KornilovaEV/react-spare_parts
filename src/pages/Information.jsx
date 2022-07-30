@@ -5,7 +5,8 @@ import Toolbar from '@mui/material/Toolbar';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-//import {SwipeableTextMobileStepper} from '../components/stepped';
+import FormInfo from '../components/FormInfo'
+import Gallery from '../components/carousel/stepped';
 
 
 function Shop() {
@@ -22,7 +23,7 @@ function Shop() {
         <Box sx={{ width: '100%' }}>
         <Grid container>
             <Grid item xs={6}>
-            <font color={styles.yellowLight}>
+            <font className="centerCell" color={styles.yellowLight}>
                 <h1>
                 Есть вопросы по товару?
                 </h1>
@@ -33,8 +34,8 @@ function Shop() {
             </font>
             </Grid>
             <Grid item xs={6}>
-            <Typography    variant="h3" color={styles.yellowLight} component="div" sx={{ flexGrow: 1 }}>
-                Тут сделать форму для оставки номера!!!! (либо свои контакты)
+            <Typography color={styles.yellowLight} component="div" sx={{ flexGrow: 1, }}>
+                <FormInfo/>
             </Typography>
             </Grid>
         </Grid>
@@ -62,21 +63,24 @@ function Shop() {
     </Toolbar>
 
     <Toolbar sx={{ backgroundColor:styles.yellowLight, '@media all': {minHeight: 500}, 'justifyContent':"center"}}>
-    <div>
+    <div className="size">
     <h1>Товар проверяется на:</h1>
-    <h3>
         <ul>
-        <li>Оригинальность</li>
-        <li>Целостность товара и упаковки</li>
-        <li>хз</li>
-        <li>хз</li>
-        </ul></h3>
+            <b><i>
+                <li>Оригинальность</li>
+                <li>Целостность товара и упаковки</li>
+                <li>Срок годность</li>
+                <li>Отвечал качеству, заверенном производителем</li>
+            </i></b>
+        </ul>
     </div>
-
     </Toolbar>
 
-    <Toolbar sx={{ backgroundColor:styles.yellowLight, '@media all': {minHeight: 400} }}>
+    <Toolbar sx={{ backgroundColor:styles.yellowLight, '@media all': {minHeight: 500}, 'justifyContent':"center"}}>
+    <div className="size">
     <h1>С нами просто и безопасно</h1>
+    <Gallery/>
+    </div>
     </Toolbar>
 
 

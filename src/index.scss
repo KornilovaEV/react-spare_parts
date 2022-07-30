@@ -140,9 +140,12 @@ input[type='submit']:active {
   background-color: #ffc400;
   width: 95%; 
   justify-content: center;
+  cursor: pointer;
 
   &:disabled {
-    animation: button-loading 0.6s ease-in-out infinite;
+    cursor:default;
+    background-color: #cabf9b ;
+    animation: button-loading 1s ease-in-out infinite;
   }
 
   &:hover {
@@ -159,6 +162,17 @@ input[type='submit']:active {
   }
 }
 
+@keyframes button-loading {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 .item{
     overflow: auto;
   
@@ -232,4 +246,37 @@ input[type='submit']:active {
 
 .cartRend{
   margin-top: 85px; 
+}
+
+.Notfound{
+  text-align: center;
+  font-size: 35px;
+  margin-top: 5%;
+}
+
+.bottom10proc{
+  margin-bottom: 10%;
+}
+
+.forms {
+  width: 100%;
+  border-radius: 10px;
+  background-color: #f5f0e4;
+
+  &:hover {
+    background-color: white;
+  }
+}
+
+
+.centerCell{
+  position: absolute;
+  top: 35%;
+  text-align: center;
+  margin-left: 100px;
+}
+
+.carousel{
+  width: 100%;
+  max-width: 700px;
 }

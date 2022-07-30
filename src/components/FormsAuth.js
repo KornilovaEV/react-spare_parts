@@ -22,7 +22,7 @@ export default function Forms({title, handleClick}) {
             }
     }
     return (
-        <div>
+        <>
         <input
                 type="email"
                 value={email}
@@ -34,7 +34,7 @@ export default function Forms({title, handleClick}) {
             />
         
         <div style={{height: 40}}>
-            {errors?.email && <p>{errors?.email?.message || 'Упс, кажется ошибка =('}</p>}
+            {errors?.email && <p>{errors?.email?.message || 'Упс, кажется ошибка'}</p>}
         </div>
 
         <input 
@@ -53,7 +53,7 @@ export default function Forms({title, handleClick}) {
         </div>
 
         <input onClick={() => handleClick(email, password)} type="submit" value= {title} />
-        </div>
+        </>
     );
 }
 

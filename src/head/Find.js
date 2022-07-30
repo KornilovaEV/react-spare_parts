@@ -1,9 +1,9 @@
-import React,{useState} from 'react';
-import SearchIcon from '@mui/icons-material/Search';
+import React,{useContext} from 'react';
 import styles from './Head.module.scss'
+import AppContext from '../context'
 
-
-const Find = ({onChangeSearchInput, searchValue = "", setSearchValue}) => {
+const Find = ({onChangeSearchInput,}) => {
+    const {searchValue, setSearchValue} = useContext(AppContext)
     return (
         <>
             <input 

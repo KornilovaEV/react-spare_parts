@@ -1,16 +1,16 @@
 import React from 'react';
-import CompMenu from './comp/CompMenu';
-import MobMenu from './mob/MobMenu';
+import CompFooter from './CompFooter';
+import MobFooter from './MobFooter';
 import {useMatchMedia} from '../hook/use-match-media';
 
-function Head() {
+function Footer() {
     const {isDesktop} = useMatchMedia();
     return (
     isDesktop?
-    <CompMenu/>
+    <CompFooter/>
     :
-    <MobMenu/>
+    <MobFooter/>
     );
 }
 
-export default Head;
+export default Footer;

@@ -4,7 +4,7 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import {NavLink} from 'react-router-dom'
 
-const Footer = () => {
+const CompFooter = () => {
     const styles = {
         black : '#212121',
         white : '#fafafa',
@@ -27,17 +27,12 @@ const Footer = () => {
                 <h5> <a href="xzxzxz" >
                     xz@xz</a>
                 </h5>
-                <h5>
-                    График работы: ежедневно <br/> с 8 до 18
-                </h5> <br/>
-                <h1>
-                    Способы оплаты
-                </h1>
-                <div>
-                    <img src='../icon/mir.png' width="60" height="30" alt="mir"/>
-                    <img src='../icon/visa.jpg' width="60" height="30" alt="visa"/>
-                    <img src='../icon/mastercard.png' width=" " height="40" alt="mastercard"/>
-                </div>
+                <h2>
+                    График работы:
+                </h2> 
+                <h4>
+                ежедневно с 8 до 18
+                </h4>
             </font>
             </Grid>
             <Grid item xs={3}>
@@ -78,6 +73,14 @@ const Footer = () => {
                     <NavLink to="https">
                     Мы на ozon</NavLink>
                 </h5>
+                <h1>
+                    Способы оплаты
+                </h1>
+                <div>
+                    <img src='../icon/mir.png' width="60" height="30" alt="mir"/>
+                    <img src='../icon/visa.jpg' width="60" height="30" alt="visa"/>
+                    <img src='../icon/mastercard.png' width=" " height="40" alt="mastercard"/>
+                </div>
             </font>
             </Grid>
             <Grid item xs={3}>
@@ -86,7 +89,6 @@ const Footer = () => {
                     Гарантии
                 </h1>
                 <h5>
-                
                 <NavLink to="/guarantee">
                 Условия обмена и возврата <br/>
                     вы можете прочитать здесь
@@ -101,4 +103,4 @@ const Footer = () => {
     );
 };
 
-export default Footer;
+export default CompFooter;

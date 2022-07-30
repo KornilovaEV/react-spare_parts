@@ -1,7 +1,7 @@
 
 import React, {useState} from 'react'
 import {useNavigate, Link} from 'react-router-dom';
-import Forms from '../components/Forms'
+import Forms from '../components/FormsAuth'
 import {useDispatch} from 'react-redux';
 import {useForm} from 'react-hook-form';
 import {Button} from '@mui/material';

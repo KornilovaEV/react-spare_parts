@@ -1,14 +1,16 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import Tooltip from '@mui/material/Tooltip';
-import {NavLink} from 'react-router-dom'
+import {NavLink} from 'react-router-dom';
+import AppContext from '../../context';
 
 function CompMenu(/*Auth */)  {
+    const { totalPrice
+    } = useContext(AppContext)
     const Auth = false;
-
     let log;
     Auth?(
         log={
@@ -59,7 +61,7 @@ function CompMenu(/*Auth */)  {
                     <Tooltip  title="Корзина">
                         <div className="d-flex flex-column mt-25 headButton">
                             <ShoppingBasketIcon sx={{fontSize: 40}}/>
-                            <span className="flex-row">1205 руб.</span>
+                            <div>{totalPrice} руб</div>
                         </div>
                     </Tooltip>
                 </NavLink>

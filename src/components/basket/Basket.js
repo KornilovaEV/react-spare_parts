@@ -1,22 +1,43 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useContext} from 'react';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Paper';
 import Checkbox from '@mui/material/Checkbox';
 import axios from 'axios';
-import styles from '../components/Card/Card.module.scss';
-import Info from '../components/Info';
+import styles from '../Card/Card.module.scss';
+import Info from '..//Info';
+import Form from './Form'
+import AppContext from '../../context';
 
-function Basket(/*{cartItems = [], setCartItems}*/) {
+export const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
 
-    const [cartItems, setCartItems] = useState([]);
+function Basket() {
+    const { totalPrice,
+        isLoading, setIsLoading,
+        cartItems, setCartItems, 
+    } = useContext(AppContext)
+
     const [isOrderComplete, setIsOrderComplete] = useState(false); 
-    const [orderId, setOrderId] = useState(null); 
+    const [orderId, setOrderId] = useState(null) 
 
-    useEffect(() => {
-        axios.get('https://62cec64c486b6ce8264c6981.mockapi.io/cart')
-        .then((res) => {setCartItems(res.data);});
-    }, []);
-
+    const onClickOrder = async () => {
+        try {
+            setIsLoading(true);
+            const {data} = await axios.post('https://62cec64c486b6ce8264c6981.mockapi.io/orders', {
+                items:cartItems
+            });
+            setOrderId(data.id);
+            setCartItems([]);
+            setIsOrderComplete(true);
+            for (let i = 0; i < cartItems.length; i++) {
+                const item = cartItems[i];
+                await axios.delete(`https://62cec64c486b6ce8264c6981.mockapi.io/cart/`+ item.id);
+                await delay(500)
+            }
+        } catch (error) {
+            alert("Не получилось создать заказ, попробуйте еще раз =(");
+        }
+        setIsLoading(false);
+    }
     const onRemoveItem = (id) => {
         try {
         axios.delete(`https://62cec64c486b6ce8264c6981.mockapi.io/cart/${id}`);
@@ -30,7 +51,6 @@ function Basket(/*{cartItems = [], setCartItems}*/) {
     const card = (
         <>
         <h1>Товары:</h1>
-
         <div className="mt-25 d-flex  flex-wrap">
             {cartItems.map((obj) => (
                 <div key={obj.id} className={styles.card}>
@@ -52,7 +72,6 @@ function Basket(/*{cartItems = [], setCartItems}*/) {
                 </div>
                 </div>
             ))}
-
         </div>
         </>
             );
@@ -62,10 +81,10 @@ function Basket(/*{cartItems = [], setCartItems}*/) {
         <h1>Вы выбрали:</h1>
         <div className='size'>
         <span>
-        <h3>Итоговая сумма: 255 руб.</h3>
+        <h3>Итоговая сумма: {totalPrice} руб.</h3>
         Количество товаров: <b>{cartItems.length} </b> шт.<br/>
 
-        <button className="yellowButton">
+        <button disabled={isLoading} onClick={onClickOrder} className="yellowButton">
             Заказать<img src="/img/arrow.svg" alt="Arrow" />
         </button>
 
@@ -87,10 +106,7 @@ function Basket(/*{cartItems = [], setCartItems}*/) {
         </>
         
     );
-    const info = (
-        <h1>Персональные данные:</h1>
-    );
-    
+
     return (
         <div>
         <h1 className="text-center">Ваша корзина</h1>
@@ -107,8 +123,8 @@ function Basket(/*{cartItems = [], setCartItems}*/) {
                             {card}</Card>
                         <Card variant="outlined" className='swim' sx={{m: 1, pl:3, width: '30%', height: 400, borderRadius:'25px',}}>
                             {result}</Card>           
-                        <Card variant="outlined" sx={{m: 1, pl:3, width: '62%', height: 450, borderRadius:'25px',}}>
-                            {info}</Card>
+                        <Card variant="outlined" sx={{m: 1, pl:3, width: '62%', height: 550, borderRadius:'25px',}}>
+                        <Form/></Card>
                         </>
                     ):
                     (
