@@ -5,16 +5,18 @@ import 'react-alice-carousel/lib/alice-carousel.css';
 
 const handleDragStart = (e) => e.preventDefault();
 
-const items = imageCarousel.map((item) =>
-    [<img src={item} width={700} height={350} alt="art" onDragStart={handleDragStart} role="presentation" />,]
+const items = imageCarousel.map((item, index) => 
+    <img key={index} src={item} width={650} height={450} alt="art" onDragStart={handleDragStart} />
     )
-
 const Gallery = () => {
     return (
         <div className="carousel">
-        <AliceCarousel autoPlay infinite autoPlayInterval={2000} mouseTracking items={items} />
+        <AliceCarousel autoPlay infinite autoPlayInterval={2000}
+        mouseTracking items={items} />
         </div>
     );
 }
+
+
 
 export default Gallery;

@@ -1,6 +1,6 @@
 import React,{useContext} from 'react';
-import styles from './Head.module.scss'
-import AppContext from '../context'
+import styles from './MenuMob.module.scss'
+import AppContext from '../../context'
 
 const Find = ({onChangeSearchInput,}) => {
     const {searchValue, setSearchValue} = useContext(AppContext)
@@ -10,7 +10,7 @@ const Find = ({onChangeSearchInput,}) => {
             className={styles.search} 
             onChange={onChangeSearchInput} 
             value={searchValue} 
-            placeholder="Поиск товара..."/>
+            placeholder="Поиск..."/>
             {searchValue &&
                     <img                    
                     onClick={() => setSearchValue('')}

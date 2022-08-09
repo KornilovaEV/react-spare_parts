@@ -2,6 +2,7 @@ import React from 'react';
 import Toolbar from '@mui/material/Toolbar';
 import Box from '@mui/material/Box';
 import {NavLink} from 'react-router-dom'
+import Icon from './Icon'
 
 import Accordion from '@mui/material/Accordion';
 import AccordionDetails from '@mui/material/AccordionDetails';
@@ -57,12 +58,9 @@ const MobFooter = () => {
             </AccordionSummary>
             <AccordionDetails>
             <h5><NavLink to="https">Мы на ozon</NavLink></h5>
-            <div> <span>Способы оплаты: </span>
-                
-                    <img src='../icon/mir.png' width="60" height="30" alt="mir"/>
-                    <img src='../icon/visa.jpg' width="60" height="30" alt="visa"/>
-                    <img src='../icon/mastercard.png' width=" " height="40" alt="mastercard"/>
-                </div>
+            <span>Способы оплаты: </span>
+            <div className="center mt-15">
+                <Icon/></div>
             </AccordionDetails>
         </Accordion>
 

@@ -14,7 +14,7 @@ const Form = () => {
         mode: "onBlur"});
 
         const condition_length = {
-            required: "Нужно заполнить форму",
+            required: "Заполните форму",
             minLength: {
                 value: 2,
                 message: "Минимум 2 значения"
@@ -46,7 +46,7 @@ const Form = () => {
                         })}
                         onChange={(e) => setName(e.target.value)}
                     />
-                    <div style={{height: 40}}>
+                    <div style={{height: 50}}>
                         {errors?.name && <p>{errors?.name?.message || 'Упс, кажется ошибка'}</p>}
                     </div>
                 </div>
@@ -64,7 +64,7 @@ const Form = () => {
                         })}
                         onChange={(e) => setSurname(e.target.value)}
                     />
-                    <div style={{height: 40}}>
+                    <div style={{height: 50}}>
                         {errors?.surname && <p>{errors?.surname?.message || 'Упс, кажется ошибка'}</p>}
                     </div>
                 </div>
@@ -78,7 +78,7 @@ const Form = () => {
                     placeholder="г.Москва ул.Московская д.1 кв.1"
                     {...register('addres',
                     {
-                        required: "Нужно заполнить форму",
+                        required: "Заполните форму",
                         minLength: {
                             value: 2,
                             message: "Минимум 2 значения"
@@ -87,7 +87,7 @@ const Form = () => {
                     })}
                     onChange={(e) => setAddres(e.target.value)}
                 />
-                <div style={{height: 40}}>
+                <div style={{height: 50}}>
                     {errors?.addres && <p>{errors?.addres?.message || 'Упс, кажется ошибка'}</p>}
                 </div>
 
@@ -101,7 +101,7 @@ const Form = () => {
                     placeholder="+7-..."
                     {...register('telephone',
                         {
-                            required: "Нужно заполнить форму",
+                            required: "Заполните форму",
                             minLength: {
                                 value: 11,
                                 message: "Минимум 11 значения"
@@ -110,11 +110,12 @@ const Form = () => {
                         })}
                     onChange={(e) => setTelephone(e.target.value)}
                 />
-                <div style={{height: 40}}>
+                <div style={{height: 50}}>
                     {errors?.telephone && <p>{errors?.telephone?.message || 'Что-то тут не так'}</p>}
                 </div>
                 </div>
 
+                        {/*
                 <div className="mt-30 ml-45">
                     <input
                         className="forms"
@@ -126,10 +127,10 @@ const Form = () => {
                         )}
                         onChange={(e) => setEmail(e.target.value)}
                     />
-                    <div style={{height: 40}}>
+                    <div style={{height: 50}}>
                         {errors?.email && <p>{errors?.email?.message}</p>}
                     </div> 
-                </div>
+                </div>*/}
             </div>
         </div> 
         </>

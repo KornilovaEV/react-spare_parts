@@ -28,3 +28,31 @@
     opacity: 0.6;
   }
 }
+
+.search{
+  border-radius: 10px;
+  width: 50%;
+  height: 50px;
+  opacity: 0.5;
+  margin-top: 15px;
+  
+  right: 30px;
+  position: absolute;
+  background-color: #ffd500;
+  border-color: #ffc400;
+  color: #fffde7;
+  outline: none;
+
+  &:focus{
+      width: 70%;
+      opacity: 1;
+  }
+}
+
+
+.clear {
+  position: absolute;
+  right: 35px;
+  width: 25px;
+  height: 25px;
+}   

@@ -6,25 +6,11 @@ import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import Tooltip from '@mui/material/Tooltip';
 import {NavLink} from 'react-router-dom';
 import AppContext from '../../context';
+import Badge from '@mui/material/Badge';
 
-function CompMenu(/*Auth */)  {
-    const { totalPrice
-    } = useContext(AppContext)
-    const Auth = false;
-    let log;
-    Auth?(
-        log={
-            icon: 'Выйти',
-            title: 'Выйти из аккаунта',
-            href:'/login'
-        }
-    ):(
-        log={
-            icon: 'Войти',
-            title: 'Войти или зарегистрироваться',
-            href:'/login'
-        }
-    )
+
+function CompMenu()  {
+    const {totalPrice, cartItems} = useContext(AppContext)
 
     return (
         <header>
@@ -34,8 +20,11 @@ function CompMenu(/*Auth */)  {
             <NavLink to="/">
                 <Typography variant="h2"
                 sx={{ fontStyle: 'oblique',  fontWeight: 'medium', fontFamily: 'Monospace', }}>
-                    GlumStore 
+                    GlumStore
                 </Typography>
+
+                <span style={{fontSize: '23px', marginLeft: 10, fontStyle: 'oblique',  fontWeight: 'medium', fontFamily: 'Monospace',}}>Лучшие товары для вас</span> 
+                
                 </NavLink>
 
             <div className="justify-between d-flex ml-50 mr-5 pr-15">
@@ -51,24 +40,20 @@ function CompMenu(/*Auth */)  {
                     </Tooltip>
                 </NavLink>
 
+                <a href="/basket">
+                    <Tooltip  title="Корзина">
+                        <div className="d-flex flex-column mt-25 headButtonIcon">
+                            <Badge badgeContent={cartItems.length}>
+                                <ShoppingBasketIcon sx={{fontSize: 40}}/>
+                            </Badge>
+                        <div className='fontSize15'>{totalPrice} руб</div>
+                        </div>
+                    </Tooltip>
+                </a>
+
                 <NavLink to="/guarantee">
                     <Tooltip  title="Условия">
                         <button className="headButton">Гарантия<br/>и возврат</button>
-                    </Tooltip>
-                </NavLink>
-
-                <NavLink to="/basket">
-                    <Tooltip  title="Корзина">
-                        <div className="d-flex flex-column mt-25 headButton">
-                            <ShoppingBasketIcon sx={{fontSize: 40}}/>
-                            <div>{totalPrice} руб</div>
-                        </div>
-                    </Tooltip>
-                </NavLink>
-
-                <NavLink to={log.href}>
-                    <Tooltip  title={log.title}>
-                        <button className="headButton">{log.icon}</button>
                     </Tooltip>
                 </NavLink>
             </div>

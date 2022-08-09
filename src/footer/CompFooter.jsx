@@ -3,7 +3,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import {NavLink} from 'react-router-dom'
-
+import Icon from './Icon'
 const CompFooter = () => {
     const styles = {
         black : '#212121',
@@ -76,11 +76,7 @@ const CompFooter = () => {
                 <h1>
                     Способы оплаты
                 </h1>
-                <div>
-                    <img src='../icon/mir.png' width="60" height="30" alt="mir"/>
-                    <img src='../icon/visa.jpg' width="60" height="30" alt="visa"/>
-                    <img src='../icon/mastercard.png' width=" " height="40" alt="mastercard"/>
-                </div>
+                <Icon/>
             </font>
             </Grid>
             <Grid item xs={3}>

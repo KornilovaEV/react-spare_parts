@@ -51,7 +51,9 @@ input[type='submit'],
   font-weight: lighter;
   transition: 0.3s all;
   max-width: 600px;
-}
+
+} 
+
 
 button[type='button'] {
   background: #575758;
@@ -227,16 +229,28 @@ input[type='submit']:active {
     opacity: 0.7;
     transition: opacity 0.15s ease-in-out;
     }
-
 }
+.headButtonIcon{
+  color: #fffde7;
+  &:hover {
+    cursor:pointer;
+    transition: opacity 0.15s ease-in-out;
+    }
+}
+
+.fontSize15{
+  font-size: 15px;
+}
+
 
 .ToShopBotton{
   color:#fffde7;
   background-color: #ffc400;
-  font-size: 25px;
-  height: 70px;
-  
-  
+  font-size: 22px;
+  height: 100%;
+  width: 100%;
+
+
   &:hover {
     background-color: #c39c18;
     cursor:pointer;
@@ -259,7 +273,7 @@ input[type='submit']:active {
 }
 
 .forms {
-  width: 100%;
+  width: 95%;
   border-radius: 10px;
   background-color: #f5f0e4;
 
@@ -280,3 +294,12 @@ input[type='submit']:active {
   width: 100%;
   max-width: 700px;
 }
+
+.height50{
+  height: 100px;
+}
+
+.fontSize13{
+  font-size:13px;
+}
+

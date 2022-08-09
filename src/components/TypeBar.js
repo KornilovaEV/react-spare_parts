@@ -1,22 +1,22 @@
-import React, {useState, useEffect} from 'react';
-import {List, ListItemText,ListItemButton, Box } from '@mui/material';
-import axios from 'axios';
-import {delay} from './basket/Basket'
+import React, {useContext} from 'react';
+import {Box} from '@mui/material';
+import AppContext from '../context';
+import Checkbox from '@mui/material/Checkbox';
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
 
-export default function TypeBar({onChangeSearchInputManuf,}){ 
-    const [items, setItems] = useState([]);
-    useEffect(() => {
-        axios.get('https://62cec64c486b6ce8264c6981.mockapi.io/items')
-        .then((res) => {setItems(res.data);});
-    }, []);
-
+function TypeBar({onClickManufacturer}){ 
+    const {items} = useContext(AppContext)
     let arr = [];
         for (let i = 0; i < items.length; i++) {
             const item = items[i];
             arr.push(item.manufacturer)
-            delay(1000)
         }
-        
+        arr = arr.filter(
+            function(item, pos) {
+            return arr.indexOf(item) === pos;
+        })
+
     return (
         <Box 
         sx={{ 
@@ -26,18 +26,23 @@ export default function TypeBar({onChangeSearchInputManuf,}){
             maxHeight: 500,
             marginTop: 3,
             marginLeft: 3,
-            borderRadius: 5,
+            borderRadius: 2,
         }}>
-        <h3 className='text-center'>Производители:</h3>
-            <List>
+        <h3 className='text-center'>Производители</h3>
+            <FormGroup className="ml-20">
                 {arr.map((obj, index) => (
-                <ListItemButton key={index}>
-                    <ListItemText className='text-center'>
-                        {obj}
-                    </ListItemText>
-                </ListItemButton>
+                        <FormControlLabel 
+                        control={
+                            <Checkbox 
+                            sx={{color: '#ffc400','&.Mui-checked': {color: '#ffc400',}}} 
+                            onClick={() => onClickManufacturer(obj)}/>
+                        }
+                        key={index} 
+                        label={obj} />
                 ))}
-            </List>
+            </FormGroup>
         </Box>
     );
 }
+
+export default TypeBar;

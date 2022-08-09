@@ -2,9 +2,8 @@ import React, {useState} from 'react';
 import {useForm} from 'react-hook-form';
 
 const FormInfo = () => {
-    const [addres, setAddres] = useState('');
+    const [question, setQuestion] = useState('');
     const [name, setName] = useState('');
-    const [surname, setSurname] = useState('');
     const [telephone, setTelephone] = useState('');
     const [email, setEmail] = useState(''); 
 
@@ -49,48 +48,7 @@ const FormInfo = () => {
                     </div>
                 </div>
 
-                <div className="ml-45 ">
-                    <div>Фамилия</div>
-                    <input
-                        className="forms"
-                        type="surname"
-                        value={surname}
-                        {...register('surname',
-                        condition_length,
-                        {
-                            pattern: ( /^[A-Za-z}]+$/i),
-                        })}
-                        onChange={(e) => setSurname(e.target.value)}
-                    />
-                    <div style={{height: 40}}>
-                        {errors?.surname && <p>{errors?.surname?.message || 'Упс, кажется ошибка'}</p>}
-                    </div>
-                </div>
-            </div>
-
-            <div>Адрес</div>
-                <input
-                    className="forms"
-                    type="addres"
-                    value={addres}
-                    placeholder="г.Москва ул.Московская д.1 кв.1"
-                    {...register('addres',
-                    {
-                        required: "Нужно заполнить форму",
-                        minLength: {
-                            value: 2,
-                            message: "Минимум 2 значения"
-                        },
-                        pattern: ( /^[A-Za-z1-9-{/ .,-}]+$/i),
-                    })}
-                    onChange={(e) => setAddres(e.target.value)}
-                />
-                <div style={{height: 40}}>
-                    {errors?.addres && <p>{errors?.addres?.message || 'Упс, кажется ошибка'}</p>}
-                </div>
-
-            <div className=" d-flex">
-                <div>
+                <div className="ml-45">
                 <div>Контактный телефон</div>
                 <input
                     className="forms"
@@ -113,7 +71,30 @@ const FormInfo = () => {
                 </div>
                 </div>
 
-                <div className="mt-30 ml-45">
+            </div>
+            <div>Что беспокоит</div>
+                <input
+                    className="forms height50 "
+                    type="question"
+                    value={question}
+                    placeholder="Вопрос, который Вас интересует"
+                    {...register('question',
+                    {
+                        required: "Нужно заполнить форму",
+                        minLength: {
+                            value: 2,
+                            message: "Минимум 2 значения"
+                        },
+                        pattern: ( /^[A-Za-z1-9-{/ .,-}]+$/i),
+                    })}
+                    onChange={(e) => setQuestion(e.target.value)}
+                />
+                <div style={{height: 40}}>
+                    {errors?.question && <p>{errors?.question?.message || 'Упс, кажется ошибка'}</p>}
+                </div>
+
+            <div className=" d-flex">
+                <div className="mt-30">
                     <input
                         className="forms"
                         type="email"
@@ -130,6 +111,8 @@ const FormInfo = () => {
                 </div>
             </div>
         </div> 
+        <input //onClick={() => handleClick(email, password)} 
+        type="submit" value="Оставить вопрос" />
         </>
     );
 };

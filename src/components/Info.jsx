@@ -9,14 +9,12 @@ const Info = ({ title, image, description }) => {
       <p className="opacity-6" 
         style={{fontSize: '25px'}}
         >{description}
-      </p>
-      <div className="mb-50">
+      </p>  
         <NavLink to="/">
           <button className="ToShopBotton">
             Перейти в магазин
           </button>
         </NavLink>
-      </div>
     </div>
   );
 };
