@@ -6,7 +6,10 @@ import Checkbox from '@mui/material/Checkbox';
 import {useMatchMedia} from '../../../hook/use-match-media';
 import Form from '../Form';
 
-const CompCard = ({onRemoveItem, isLoading=false, onClickOrder}) => {
+
+
+const CompCard = ({onRemoveItem, onClickOrder, register, errors, isValid}) => {
+    
     const {isDesktop} = useMatchMedia();  
     const {cartItems, totalPrice} = React.useContext(AppContext)
     const style = isDesktop? 'swim':'';
@@ -18,7 +21,7 @@ const CompCard = ({onRemoveItem, isLoading=false, onClickOrder}) => {
     <h3>Итоговая сумма: {totalPrice} руб.</h3>
     Количество товаров: <b>{cartItems.length} </b> шт.<br/>
 
-    <button disabled={isLoading} onClick={onClickOrder} className="yellowButton">
+    <button disabled={!isValid} onClick={onClickOrder} className="yellowButton">
         Заказать<img src="/img/arrow.svg" alt="Arrow" />
     </button>
 
@@ -65,10 +68,10 @@ const CompCard = ({onRemoveItem, isLoading=false, onClickOrder}) => {
         ))}
         </div>
         </Card>
-        <Card variant="outlined" className={style} sx={{m: 1, pl:3, width: '30%', height: 400, borderRadius:'25px',}}>
+        <Card variant="outlined" className={style} sx={{m: 1, pl:3, width: '30%', height: 350, borderRadius:'25px',}}>
         {result}</Card> 
         <Card variant="outlined" sx={{m: 1, pl:3, width: '62%', height: 550, borderRadius:'25px',}}>
-        <Form/></Card>
+        <Form register={register} errors={errors}/></Card>
         </>
     );
 };

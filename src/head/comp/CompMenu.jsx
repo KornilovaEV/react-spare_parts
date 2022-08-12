@@ -18,17 +18,17 @@ function CompMenu()  {
             <Toolbar sx={{ backgroundColor: '#ffc400', '@media all': {minHeight: 100,} }}>
             <div className="justify-between d-flex w100p clear">
             <NavLink to="/">
-                <Typography variant="h2"
-                sx={{ fontStyle: 'oblique',  fontWeight: 'medium', fontFamily: 'Monospace', }}>
+                <Typography variant="h2" sx={{ fontStyle: 'oblique',  fontWeight: 'medium', fontFamily: 'Monospace', }}>
                     GlumStore
                 </Typography>
-
-                <span style={{fontSize: '23px', marginLeft: 10, fontStyle: 'oblique',  fontWeight: 'medium', fontFamily: 'Monospace',}}>Лучшие товары для вас</span> 
-                
-                </NavLink>
+                <span style={{
+                    fontSize: '23px', marginLeft: 10, fontStyle: 'oblique',  
+                    fontWeight: 'medium', fontFamily: 'Monospace',}}>
+                        Лучшие товары для вас</span> 
+            </NavLink>
 
             <div className="justify-between d-flex ml-50 mr-5 pr-15">
-                <NavLink  to="/shop">
+                <NavLink  to="/info">
                     <Tooltip  title="О нас">
                         <button className="headButton" >Информация</button>
                     </Tooltip>
@@ -40,7 +40,13 @@ function CompMenu()  {
                     </Tooltip>
                 </NavLink>
 
-                <a href="/basket">
+                <NavLink to="/guarantee">
+                    <Tooltip  title="Условия">
+                        <button className="headButton">Гарантия<br/>и возврат</button>
+                    </Tooltip>
+                </NavLink>
+
+                <NavLink to="/basket">
                     <Tooltip  title="Корзина">
                         <div className="d-flex flex-column mt-25 headButtonIcon">
                             <Badge badgeContent={cartItems.length}>
@@ -49,13 +55,8 @@ function CompMenu()  {
                         <div className='fontSize15'>{totalPrice} руб</div>
                         </div>
                     </Tooltip>
-                </a>
-
-                <NavLink to="/guarantee">
-                    <Tooltip  title="Условия">
-                        <button className="headButton">Гарантия<br/>и возврат</button>
-                    </Tooltip>
                 </NavLink>
+
             </div>
             </div>
         </Toolbar>

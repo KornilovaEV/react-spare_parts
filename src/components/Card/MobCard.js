@@ -9,9 +9,9 @@ function MobCard({
     image, 
     price, 
     articul, 
-    manufacturer, 
+    customer, 
     onPlus,
-    added = false, 
+    added, 
     loading = false, 
 }) {
 
@@ -48,7 +48,7 @@ return (
             <span><i>Цена:</i></span>
             <b>{price} руб.</b>
             <span><i>Производитель:</i></span>
-            <b>{manufacturer}</b>
+            <b>{customer}</b>
             </div>
 
             {onPlus && (

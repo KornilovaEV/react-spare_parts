@@ -5,8 +5,9 @@ import Checkbox from '@mui/material/Checkbox';
 import Form from '../Form'
 
 
-const MobCard = ({onRemoveItem, isLoading=false, onClickOrder}) => {
+const MobCard = ({onRemoveItem, isLoading=false, onClickOrder, register, errors, isValid}) => {
   const {cartItems, totalPrice} = React.useContext(AppContext)
+  
 
   const result = (
     <>
@@ -16,7 +17,7 @@ const MobCard = ({onRemoveItem, isLoading=false, onClickOrder}) => {
     <h3>Итоговая сумма: {totalPrice} руб.</h3>
     Количество товаров: <b>{cartItems.length} </b> шт.<br/>
 
-    <button disabled={isLoading} onClick={onClickOrder} className="yellowButton">
+    <button disabled={!isValid} onClick={onClickOrder} className="yellowButton">
         Заказать<img src="/img/arrow.svg" alt="Arrow" />
     </button>
 
@@ -36,11 +37,11 @@ const MobCard = ({onRemoveItem, isLoading=false, onClickOrder}) => {
     </>
 );
   return (
-    <>
+    <div>
         <div className="mt-25 d-flex  flex-wrap">
             {cartItems.map((obj, index) => (
-          <div key={index} className={styles.mobcard}>
-            <img width="90%" height={75} src={obj.image ? obj.image : '/img/no_icon.svg'} alt="Products" />
+        <div key={index} className={cartItems.length === 1 ?styles.basket :styles.mobcard}>
+            <img width="100%" height={75} src={obj.image ? obj.image : '/img/no_icon.svg'} alt="Products" />
             <span><b>{obj.title}</b></span>
             <div className="d-flex justify-between align-center">
                 <div className="d-flex flex-column">
@@ -59,9 +60,11 @@ const MobCard = ({onRemoveItem, isLoading=false, onClickOrder}) => {
         </div>
         ))}
         </div>
-        <Form/>
+        <div className="">
+        <Form register={register} errors={errors}/>
+        </div>
         <div className="ml-10 mb-20">{result}</div>
-        </>
+        </div>
   );
 };
 

@@ -9,7 +9,7 @@ import {useMatchMedia} from '../hook/use-match-media';
 
 const Home = () => {
     const {isMobile, isDesktop} = useMatchMedia();
-    const [manufacturer, setManufacturer] = React.useState("");
+    const [manufacturer, setManufacturer] = React.useState([]);
 
     const {cartItems, setCartItems,
         items, isLoading, 
@@ -19,21 +19,20 @@ const Home = () => {
     const onChangeSearchInput = (event) => {setSearchValue(event.target.value)};
 
     const onClickManufacturer = (manuf) => { 
-        manufacturer !== manuf ? setManufacturer(manuf) : setManufacturer("")};
+        !manufacturer.includes(manuf) ? setManufacturer((prev) => [...prev, manuf]) 
+            :setManufacturer((prev) => prev.filter((item) => item !== manuf))};
 
-    const onAddToCart = async (obj) => {
+    React.useEffect(() => {
+        localStorage.setItem('cartItems', JSON.stringify(cartItems));
+    }, [cartItems]);
+
+    const onAddToCart = (obj) => {
         try {
-            const findItem = cartItems.find((item) => item.articul === obj.articul);
+            const findItem = cartItems.find((item) => item.id === obj.id);
             if (findItem){
-                await axios.delete(`https://62cec64c486b6ce8264c6981.mockapi.io/cart/${obj.articul}`);
-                setCartItems((prev) => prev.filter((item) => item.articul !== obj.articul));
-                console.log("del")
-            }
+                setCartItems((prev) => prev.filter((item) => item.id !== obj.id));}
             else{
-                setCartItems((prev) => [...prev, obj]);
-                axios.post('https://62cec64c486b6ce8264c6981.mockapi.io/cart', obj);
-                console.log("+")
-            }
+                setCartItems((prev) => [...prev, obj]);}
         } 
         catch (error) {
             alert('Ошибка при добавлении в корзину');
@@ -41,26 +40,35 @@ const Home = () => {
         };
     };
 
-    //filter on card to shop menu 
     const renderItems = () => {
-        const filterItemsTitle = items.filter((item) => item.title.toLowerCase().includes(searchValue.toLowerCase()))
-        //Полное совпадание мб сделать на артикул?
+        
+        /*
+        const filterItemsTitle = axios.get('/api/products?title='+searchValue.toLowerCase());
+        setX(filterItemsTitle.data.results);
+
+        //items.filter((item) => item.title.toLowerCase().includes(searchValue.toLowerCase()))
+        /*
         const filterItemsArticle = items.filter((item) => item.articul.toLowerCase().includes(searchValue.toLowerCase()))
+        //combining the list of articles and titles
         const filterItem = filterItemsTitle.concat(filterItemsArticle);
+        //filter on duplicate
         const filterItems = filterItem.filter(function (item, pos) {return filterItem.indexOf(item) === pos});
+        //filter on manufacturer
+
         const filterMan = filterItems.filter((item) => item.manufacturer.includes(manufacturer))
+        */
 
-        //checks the variable for affiliation array  
-        function checkAvailability(arr, val) {
-            return arr.some(function(arrVal) {return val === arrVal;});
-        }
+        const isItemAdded = (id) => {
+            return cartItems.some((item) => item.id === id);
+        };
 
-        const cartItemsArticuls = cartItems.map((item) => item.articul)
-        return (isLoading? [...Array(10)] : filterMan).map((obj, index ) => (
+        console.log(cartItems)
+
+        return (isLoading? [...Array(10)] : items).map((obj, index ) => (
             <Card 
             key={index}
             onPlus={(item) => onAddToCart(item)}
-            added={obj && checkAvailability(cartItemsArticuls, obj.articul)}
+            added={obj && isItemAdded(obj.id)}
             loading={isLoading}
             {...obj}
             />                       
@@ -73,8 +81,14 @@ const Home = () => {
                 {renderItems()} 
             </div>
             :
-            <Grid container spacing={3}>
-                <Grid item xs={2}>
+            <Grid container spacing={3} >
+                <Grid sx={{
+                    '--Grid-borderWidth': '2px',
+                    '& > div': {
+                    borderRight: 'var(--Grid-borderWidth) solid',
+                    borderColor: 'divider',
+                    },
+                }} item xs={2}>
                     <TypeBar onClickManufacturer={onClickManufacturer}/> 
                 </Grid>
                 {isDesktop?

@@ -9,9 +9,9 @@ function CompCard({
   image, 
   price, 
   articul, 
-  manufacturer, 
+  customer, 
   onPlus, 
-  added = false, 
+  added, 
   loading = false, }) {
   //const { isItemAdded } = React.useContext(AppContext);
   const [plus, setPlus] = useState(added);
@@ -48,7 +48,7 @@ function CompCard({
               <span><i>Цена:</i></span>
               <b>{price} руб.</b>
               <span><i>Производитель:</i></span>
-              <b>{manufacturer}</b>
+              <b>{customer}</b>
             </div>
 
             {onPlus && (

@@ -116,6 +116,7 @@ input[type='submit']:active {
   color: white;
 }
 
+
 .App-link {
   color: #61dafb;
 }
@@ -147,7 +148,7 @@ input[type='submit']:active {
   &:disabled {
     cursor:default;
     background-color: #cabf9b ;
-    animation: button-loading 1s ease-in-out infinite;
+    
   }
 
   &:hover {
@@ -280,21 +281,65 @@ input[type='submit']:active {
   &:hover {
     background-color: white;
   }
+
+
+}
+
+.BlackButton{
+  background-color: #212121; 
+  font-size: 35; 
+  border-radius: 15px;
+  color: white;
+
+  &:hover{
+    background-color: #413e3e;
+  }
 }
 
 
+.centers{
+  top: 35%;
+  text-align: center;
+  margin-left: 5%;
+  color:#fffde7;
+  text-align: justify;
+
+}
 .centerCell{
   position: absolute;
   top: 35%;
   text-align: center;
-  margin-left: 100px;
+  margin-left: 5%;
+  color:#fffde7;
+  width: 30%;
+}
+.fontSize100proc{
+  font-size: calc(20px + 16 * (100vw / 1280));
+  margin-bottom: 20px;
+}
+.fontSize90proc{
+  font-size: calc(15px + 8 * (100vw / 1280));
+}
+.fontSize80proc{
+  font-size: calc(10px + 8 * (100vw / 1280));
 }
 
-.carousel{
+.carouselComp{
   width: 100%;
-  max-width: 700px;
+  height: 100%;
+  max-width: 500px;
 }
 
+.carouselMob{
+  margin-left: 10px;
+  width: 100%;
+  height: 100%;
+  max-width: 350px;
+}
+
+.marginLeft20proc{
+  margin-left: 20%;
+}
 .height50{
   height: 100px;
 }
@@ -302,4 +347,3 @@ input[type='submit']:active {
 .fontSize13{
   font-size:13px;
 }
-

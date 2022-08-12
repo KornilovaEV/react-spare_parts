@@ -1,16 +1,29 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {useForm} from 'react-hook-form';
+import AppContext from '../context';
+import axios from 'axios';
 
 const FormInfo = () => {
-    const [question, setQuestion] = useState('');
-    const [name, setName] = useState('');
-    const [telephone, setTelephone] = useState('');
-    const [email, setEmail] = useState(''); 
 
-    const {
-        register,
-        formState: {errors, }} = useForm({
-        mode: "onBlur"});
+    const { name, setName, telephone, setTelephone, 
+        email, setEmail, question, setQuestion
+    } = React.useContext(AppContext);
+
+    const onClickOrder = async () => {
+        try {
+            await axios.post('/api/issues' , {
+                issues: question,
+                customer: name,
+                phone: telephone, 
+                email: email
+            });            
+            setQuestion(""); setName(""); setTelephone(""); setEmail(undefined);
+        } catch (error) {
+            alert("Не получилось отправить вопрос, попробуйте еще раз");
+        }
+    }
+
+    const { register, formState: {errors, isValid }} = useForm({mode: "onBlur"});
 
         const condition_length = {
             required: "Нужно заполнить форму",
@@ -25,9 +38,9 @@ const FormInfo = () => {
         }
     return (
         <>
-        <h1 className="ml-10">
-            Оставьте свои данные
-        </h1>
+        <div className="ml-10 fontSize100proc mt-50">
+            <b>Оставьте свои данные</b>
+        </div>
         <div className="size ml-10">
             <div className=" d-flex">
                 <div>
@@ -60,9 +73,9 @@ const FormInfo = () => {
                             required: "Нужно заполнить форму",
                             minLength: {
                                 value: 11,
-                                message: "Минимум 11 значения"
+                                message: "Минимум 11 цифр"
                             },
-                            pattern: ( /^[1-9-{+ - }}]+$/i),
+                            pattern: ( /^[\d\-{+ - }}]+$/i),
                         })}
                     onChange={(e) => setTelephone(e.target.value)}
                 />
@@ -85,7 +98,7 @@ const FormInfo = () => {
                             value: 2,
                             message: "Минимум 2 значения"
                         },
-                        pattern: ( /^[A-Za-z1-9-{/ .,-}]+$/i),
+                        pattern: ( /^[А-Яа-яA-Za-z1-9-{/ .,-}]+$/i),
                     })}
                     onChange={(e) => setQuestion(e.target.value)}
                 />
@@ -100,19 +113,15 @@ const FormInfo = () => {
                         type="email"
                         value={email}
                         placeholder="Email - необязательно"
-                        {...register("email",
-                        {required: true, pattern: /^\S+@\S+$/i}
-                        )}
                         onChange={(e) => setEmail(e.target.value)}
                     />
-                    <div style={{height: 40}}>
-                        {errors?.email && <p>{errors?.email?.message}</p>}
-                    </div> 
                 </div>
             </div>
         </div> 
-        <input //onClick={() => handleClick(email, password)} 
-        type="submit" value="Оставить вопрос" />
+        
+        <button className="yellowButton mb-50 ml-10" disabled={!isValid} onClick={onClickOrder}>
+            Оставить вопрос
+        </button>
         </>
     );
 };

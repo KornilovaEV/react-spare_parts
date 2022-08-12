@@ -22,7 +22,7 @@ function Menu() {
                 <button className={styles.MobMenuButton}>Магазин</button>
             </NavLink>
 
-            <NavLink  to="/shop">
+            <NavLink  to="/info">
                 <button className={styles.MobMenuButton}>Информация</button>
             </NavLink>
 
@@ -34,12 +34,12 @@ function Menu() {
                 <button className={styles.MobMenuButton}>Гарантия<br/>и возврат</button>
             </NavLink>
 
-            <a href="/basket">
+            <NavLink to="/basket">
                 <div className="d-flex ml-10 mt-25 opacity-6">
                     <ShoppingBasketIcon sx={{fontSize: 40, color: "#ffc400"}}/>
                     <span className="ml-15 mt-5" style={{color: '#020202', fontSize: '25px', }}>{totalPrice} руб.</span>
                 </div>
-            </a>
+            </NavLink>
 
         </div>
     </div>

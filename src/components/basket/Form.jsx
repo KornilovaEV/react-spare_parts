@@ -1,17 +1,16 @@
-import React, {useState} from 'react';
-import {useForm} from 'react-hook-form';
+import React from 'react';
+import {useMatchMedia} from '../../hook/use-match-media';
+import AppContext from '../../context';
 
-const Form = () => {
-    const [addres, setAddres] = useState('');
-    const [name, setName] = useState('');
-    const [surname, setSurname] = useState('');
-    const [telephone, setTelephone] = useState('');
-    const [email, setEmail] = useState(''); 
+const Form = ({register, errors,}) => {
 
-    const {
-        register,
-        formState: {errors, }} = useForm({
-        mode: "onBlur"});
+    
+    const { addres, setAddres, name, setName, telephone, setTelephone, 
+        email, setEmail, 
+    } = React.useContext(AppContext)
+
+    const {isMobile} = useMatchMedia();
+    
 
         const condition_length = {
             required: "Заполните форму",
@@ -32,7 +31,7 @@ const Form = () => {
         </h1>
 
         <div className="size ml-10">
-            <div className=" d-flex">
+            <div className="d-flex">
                 <div>
                     <div>Имя</div>
                     <input
@@ -52,21 +51,26 @@ const Form = () => {
                 </div>
 
                 <div className="ml-45 ">
-                    <div>Фамилия</div>
-                    <input
-                        className="forms"
-                        type="surname"
-                        value={surname}
-                        {...register('surname',
-                        condition_length,
+                <div>Контактный телефон</div>
+                <input
+                    className="forms"
+                    type="telephone"
+                    value={telephone}
+                    placeholder="+7-..."
+                    {...register('telephone',
                         {
-                            pattern: ( /^[A-Za-z}]+$/i),
+                            required: "Заполните форму",
+                            minLength: {
+                                value: 11,
+                                message: "Минимум 11 значения"
+                            },
+                            pattern: ( /^[1-9-{+ - }}]+$/i),
                         })}
-                        onChange={(e) => setSurname(e.target.value)}
-                    />
-                    <div style={{height: 50}}>
-                        {errors?.surname && <p>{errors?.surname?.message || 'Упс, кажется ошибка'}</p>}
-                    </div>
+                    onChange={(e) => setTelephone(e.target.value)}
+                />
+                <div style={{height: 50}}>
+                    {errors?.telephone && <p>{errors?.telephone?.message || 'Что-то тут не так'}</p>}
+                </div>
                 </div>
             </div>
 
@@ -91,50 +95,19 @@ const Form = () => {
                     {errors?.addres && <p>{errors?.addres?.message || 'Упс, кажется ошибка'}</p>}
                 </div>
 
-            <div className=" d-flex">
-                <div>
-                <div>Контактный телефон</div>
-                <input
-                    className="forms"
-                    type="telephone"
-                    value={telephone}
-                    placeholder="+7-..."
-                    {...register('telephone',
-                        {
-                            required: "Заполните форму",
-                            minLength: {
-                                value: 11,
-                                message: "Минимум 11 значения"
-                            },
-                            pattern: ( /^[1-9-{+ - }}]+$/i),
-                        })}
-                    onChange={(e) => setTelephone(e.target.value)}
-                />
-                <div style={{height: 50}}>
-                    {errors?.telephone && <p>{errors?.telephone?.message || 'Что-то тут не так'}</p>}
-                </div>
-                </div>
-
-                        {/*
-                <div className="mt-30 ml-45">
+                <div className={isMobile? "mt-50": "mt-25"}>
                     <input
                         className="forms"
                         type="email"
                         value={email}
                         placeholder="Email - необязательно"
-                        {...register("email",
-                        {required: true, pattern: /^\S+@\S+$/i}
-                        )}
                         onChange={(e) => setEmail(e.target.value)}
-                    />
-                    <div style={{height: 50}}>
-                        {errors?.email && <p>{errors?.email?.message}</p>}
-                    </div> 
-                </div>*/}
-            </div>
+                    /> 
+                </div>
         </div> 
         </>
     );
+    
 };
 
 export default Form;

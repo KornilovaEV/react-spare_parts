@@ -9,9 +9,9 @@ function Card({
   image, 
   price, 
   articul, 
-  manufacturer, 
+  customer, 
   onPlus, 
-  added = false, 
+  added, 
   loading = false, }) { 
 
   const {isMobile} = useMatchMedia();  
@@ -23,7 +23,7 @@ function Card({
       image={image} 
       price={price} 
       articul={articul} 
-      manufacturer={manufacturer} 
+      customer={customer} 
       onPlus={onPlus} 
       added={added} 
       loading={loading}/>
@@ -34,7 +34,7 @@ function Card({
       image={image} 
       price={price} 
       articul={articul} 
-      manufacturer={manufacturer} 
+      customer={customer} 
       onPlus={onPlus} 
       added={added} 
       loading={loading}/>

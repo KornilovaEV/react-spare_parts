@@ -20,7 +20,6 @@ function TypeBar({onClickManufacturer}){
     return (
         <Box 
         sx={{ 
-            bgcolor: '#fffde9',
             position: 'relative',
             overflow: 'auto',
             maxHeight: 500,
@@ -32,11 +31,7 @@ function TypeBar({onClickManufacturer}){
             <FormGroup className="ml-20">
                 {arr.map((obj, index) => (
                         <FormControlLabel 
-                        control={
-                            <Checkbox 
-                            sx={{color: '#ffc400','&.Mui-checked': {color: '#ffc400',}}} 
-                            onClick={() => onClickManufacturer(obj)}/>
-                        }
+                        control={<Checkbox onClick={() => onClickManufacturer(obj)}/>}
                         key={index} 
                         label={obj} />
                 ))}
